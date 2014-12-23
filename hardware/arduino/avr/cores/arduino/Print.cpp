@@ -201,7 +201,7 @@ size_t Print::println(const Printable& x)
 #define ARDPRINTF
 #define ARDBUFFER 16
 
-int Print::ardprintf(char *str, ...)
+int Print::ardprt(char *str, ...)
 {
   int i, count=0, j=0, flag=0;
   char temp[ARDBUFFER+1];
@@ -225,6 +225,12 @@ int Print::ardprintf(char *str, ...)
         case 'l': Serial.print(va_arg(argv, long));
                   break;
         case 'f': Serial.print(va_arg(argv, double));
+                  break;
+        case 'b': Serial.print(va_arg(argv, int), BIN);
+                  break;
+        case 'o': Serial.print(va_arg(argv, int), OCT);
+                  break;
+        case 'x': Serial.print(va_arg(argv, int), HEX);
                   break;
         case 'c': Serial.print((char)va_arg(argv, int));
                   break;
